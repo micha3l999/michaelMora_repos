@@ -1,22 +1,22 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class Organizations {
-  @PrimaryGeneratedColumn({
-    type: 'int',
-    name: 'id_organization',
-  })
-  id: number;
+    @PrimaryGeneratedColumn({
+        type: 'int',
+        name: 'id_organization',
+    })
+    id: number;
 
-  @Column({
-    nullable: false,
-    length: 50,
-  })
-  name: string;
+    @Column({
+        nullable: false,
+        length: 50,
+    })
+    name: string;
 
-  @Column({
-    type: 'int',
-    nullable: false,
-  })
-  status: number;
+    @Column({
+        type: 'int',
+        nullable: false,
+    })
+    status: number;
 }

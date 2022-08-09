@@ -1,9 +1,8 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import entities, { Organizations } from './entities';
+import { MockServiceModule } from './mockService/mockService.module';
 
 @Module({
   imports: [
@@ -23,8 +22,9 @@ import entities, { Organizations } from './entities';
       inject: [ConfigService],
     }),
     TypeOrmModule.forFeature([Organizations]),
+    MockServiceModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [],
+  providers: [],
 })
 export class AppModule {}
