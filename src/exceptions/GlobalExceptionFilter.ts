@@ -2,6 +2,8 @@ import { ArgumentsHost, BadRequestException, Catch, ExceptionFilter, HttpExcepti
 import { Request, Response } from 'express';
 import { QueryFailedError, EntityNotFoundError, CannotCreateEntityIdMapError } from 'typeorm';
 import { GlobalResponseError } from './models/GlobalResponseError';
+import { NotCoverageMetric } from './NotCoverageMetric';
+import { TribeNotFoundException } from './TribeNotFoundException';
 
 @Catch()
 export class GlobalExceptionFilter implements ExceptionFilter {
@@ -10,7 +12,6 @@ export class GlobalExceptionFilter implements ExceptionFilter {
         const response = ctx.getResponse<Response>();
         const request = ctx.getRequest<Request>();
         let message = (exception as any).message;
-        let code = 'HttpException';
 
         Logger.error(message, `${request.method} ${request.url}`);
 
@@ -23,22 +24,26 @@ export class GlobalExceptionFilter implements ExceptionFilter {
             case QueryFailedError:  // this is a TypeOrm error
                 status = HttpStatus.UNPROCESSABLE_ENTITY;
                 message = (exception as QueryFailedError).message;
-                code = (exception as any).code;
                 break;
             case EntityNotFoundError:  // this is another TypeOrm error
                 status = HttpStatus.UNPROCESSABLE_ENTITY;
                 message = (exception as EntityNotFoundError).message;
-                code = (exception as any).code;
                 break;
             case CannotCreateEntityIdMapError:
                 status = HttpStatus.UNPROCESSABLE_ENTITY;
                 message = (exception as CannotCreateEntityIdMapError).message;
-                code = (exception as any).code;
                 break;
             case BadRequestException:
                 status = HttpStatus.BAD_REQUEST;
                 message = (exception).response.message;
-                code = (exception as any).code;
+                break;
+            case TribeNotFoundException:
+                message = (exception).message;
+                status = HttpStatus.BAD_REQUEST;
+                break;
+            case NotCoverageMetric:
+                message = (exception).message;
+                status = HttpStatus.NOT_FOUND;
                 break;
             default:
                 status = HttpStatus.INTERNAL_SERVER_ERROR
