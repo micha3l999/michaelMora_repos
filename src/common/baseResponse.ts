@@ -7,12 +7,12 @@ export class BaseResponse<T> {
       })
     public success: boolean = true;
     @ApiProperty({
-        example: [],
+        example: {},
         description: 'The data of the response',
       })
-    public data: T[];
+    public data: T;
 
-    constructor(data: T[]) {
+    constructor(data: T) {
         this.data = data;
     }
 }
