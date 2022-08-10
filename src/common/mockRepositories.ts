@@ -1,5 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 
+/* Mock service repositories api response */
 export class MockRepositories {
     @ApiProperty({
         example: 1,
