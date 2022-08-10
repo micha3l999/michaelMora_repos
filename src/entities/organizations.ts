@@ -12,6 +12,7 @@ export class Organizations {
     @Column({
         nullable: false,
         length: 50,
+        unique: true,
     })
     name: string;
 

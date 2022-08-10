@@ -1,5 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 
+/* Base API response */
 export class BaseResponse<T> {
     @ApiProperty({
         example: true,
