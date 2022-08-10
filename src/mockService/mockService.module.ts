@@ -5,5 +5,6 @@ import { MockServiceService } from './mockService.service';
 @Module({
     controllers: [MockServiceController],
     providers: [MockServiceService],
+    exports: [MockServiceService],
 })
 export class MockServiceModule {}
