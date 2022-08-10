@@ -1,7 +1,9 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { APP_FILTER } from '@nestjs/core';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import entities, { Organizations } from './entities';
+import { GlobalExceptionFilter } from './exceptions/GlobalExceptionFilter';
 import { MockServiceModule } from './mockService/mockService.module';
 import { OrganizationsModule } from './organizations/organizations.module';
 
@@ -27,6 +29,11 @@ import { OrganizationsModule } from './organizations/organizations.module';
     OrganizationsModule,
   ],
   controllers: [],
-  providers: [],
+  providers: [
+    {
+      provide: APP_FILTER,
+      useClass: GlobalExceptionFilter,
+    },
+  ],
 })
 export class AppModule {}
