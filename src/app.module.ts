@@ -3,6 +3,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import entities, { Organizations } from './entities';
 import { MockServiceModule } from './mockService/mockService.module';
+import { OrganizationsModule } from './organizations/organizations.module';
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { MockServiceModule } from './mockService/mockService.module';
     }),
     TypeOrmModule.forFeature([Organizations]),
     MockServiceModule,
+    OrganizationsModule,
   ],
   controllers: [],
   providers: [],
