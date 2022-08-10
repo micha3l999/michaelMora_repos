@@ -6,6 +6,9 @@ import entities, { Organizations } from './entities';
 import { GlobalExceptionFilter } from './exceptions/GlobalExceptionFilter';
 import { MockServiceModule } from './mockService/mockService.module';
 import { OrganizationsModule } from './organizations/organizations.module';
+import { MetricsModule } from './metrics/metrics.module';
+import { RepositoriesModule } from './repositories/repositories.module';
+import { TribesModule } from './tribes/tribes.module';
 
 @Module({
   imports: [
@@ -27,6 +30,9 @@ import { OrganizationsModule } from './organizations/organizations.module';
     TypeOrmModule.forFeature([Organizations]),
     MockServiceModule,
     OrganizationsModule,
+    MetricsModule,
+    RepositoriesModule,
+    TribesModule,
   ],
   controllers: [],
   providers: [
