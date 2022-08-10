@@ -10,8 +10,14 @@ export class OrganizationsController {
     constructor(private readonly organizationsService: OrganizationsService) {}
 
     @Post('')
-    @UsePipes(ValidationPipe)
-    postOrganizations(@Body() createOrganizationDto: CreateOrganizationDto): BaseResponse<Organizations> {
-        return new BaseResponse<Organizations>(this.organizationsService.createOrganization(createOrganizationDto));
+    async postOrganizations(@Body() createOrganizationDto: CreateOrganizationDto): Promise<BaseResponse<Organizations>> {
+        const newOrganization = await this.organizationsService.createOrganization(createOrganizationDto);
+        return new BaseResponse<Organizations>(newOrganization);
+    }
+
+    @Get('')
+    async getOrganizations(): Promise<BaseResponse<Organizations[]>> {
+        const organizations = await this.organizationsService.getOrganizations();
+        return new BaseResponse<Organizations[]>(organizations);
     }
 }
