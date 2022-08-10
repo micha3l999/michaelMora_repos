@@ -2,6 +2,17 @@ import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToOne, Prim
 import { Metrics } from "./metrics";
 import { Tribes } from "./tribes";
 
+export enum State {
+    A = 'A',
+    D = 'D',
+    E = 'E',
+}
+
+export enum Status {
+    A = 'A',
+    I = 'I',
+}
+
 @Entity()
 export class Repositories {
     @PrimaryGeneratedColumn({
@@ -20,7 +31,7 @@ export class Repositories {
         type: 'char',
         length: 1,
     })
-    state: string;
+    state: State;
 
     @CreateDateColumn({
         type: 'timestamptz',
@@ -32,7 +43,7 @@ export class Repositories {
         type: 'char',
         length: 1,
     })
-    status: string;
+    status: Status;
 
     @JoinColumn({ name: 'id_tribe' })
     @ManyToOne(() => Tribes, (tribe) => tribe.repositories)
