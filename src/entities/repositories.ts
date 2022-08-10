@@ -1,4 +1,4 @@
-import { Column, CreateDateColumn, Entity, ManyToOne, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import { Metrics } from "./metrics";
 import { Tribes } from "./tribes";
 
@@ -34,13 +34,10 @@ export class Repositories {
     })
     status: string;
 
-    @Column({
-        name: 'id_tribe',
-        type: 'int',
-    })
+    @JoinColumn({ name: 'id_tribe' })
     @ManyToOne(() => Tribes, (tribe) => tribe.repositories)
-    idTribe: Tribes;
+    tribe: Tribes;
 
-    @OneToOne(() => Metrics, (metrics) => metrics.idRepository)
-    idMetrics: Metrics;
+    @OneToOne(() => Metrics, (metrics) => metrics.repository)
+    metrics: Metrics;
 }

@@ -1,4 +1,4 @@
-import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Organizations } from "./organizations";
 import { Repositories } from "./repositories";
 
@@ -21,14 +21,11 @@ export class Tribes {
     })
     status: number;
 
-    @Column({
-        type: 'int',
-        name: 'id_organization',
-    })
     @ManyToOne(() => Organizations, (organization) => organization.tribes)
-    idOrganization: Organizations;
+    @JoinColumn({ name: 'id_organization' })
+    organization: Organizations;
 
-    @OneToMany(() => Repositories, (repository) => repository.idTribe)
+    @OneToMany(() => Repositories, (repository) => repository.tribe)
     repositories: Repositories[];
     
 }
