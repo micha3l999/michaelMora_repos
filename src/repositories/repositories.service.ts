@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repositories } from 'src/entities';
 import { State } from 'src/entities/repositories';
 import { NotCoverageMetric } from 'src/exceptions/NotCoverageMetric';
-import { Between, MoreThan, Repository } from 'typeorm';
+import { Between, Repository } from 'typeorm';
 
 @Injectable()
 export class RepositoriesService {

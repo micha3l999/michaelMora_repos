@@ -3,7 +3,7 @@ import { MockService } from 'src/common/mockService';
 
 @Injectable()
 export class MockServiceService {
-    getMockRepositories(): MockService {
+        getMockRepositories(): MockService {
         return {
             repositories: [
                 {

@@ -60,10 +60,10 @@ export class OrganizationsController {
     async updateOrganization(
         @Param('idOrganization', ParseIntPipe) idOrganization: number,
         @Body() updateOrganizationDto: UpdateOrganizationDto,
-    ): Promise<Organizations> {
+    ): Promise<BaseResponse<Organizations>> {
         const organization =
             await this.organizationsService.updateOrganization(idOrganization, updateOrganizationDto);
-        return organization;
+        return new BaseResponse<Organizations>(organization);
     }
 
     @Delete('/:idOrganization')
