@@ -1,0 +1,3 @@
+id,name,tribe,organization,coverage,codeSmells,bugs,vulnerabilities,hotspot,verificationState,state
+1,my_example                                        ,Team fire                                         ,Google,95%,5,5,1,3,Verificado,Enable
+2,my_practice_b                                     ,Team fire                                         ,Google,100%,10,2,1,1,En espera,Enable
